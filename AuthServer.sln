@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthServer.API", "AuthServer.API\AuthServer.API.csproj", "{52BA206E-8251-413E-B3D4-3D7E6EE0E514}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthServer.API", "AuthServer.API\AuthServer.API.csproj", "{52BA206E-8251-413E-B3D4-3D7E6EE0E514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthServer.Core", "Core\AuthServer.Core.csproj", "{D6AD19D5-F3C2-4097-8204-568D572CE300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthServer.Core", "Core\AuthServer.Core.csproj", "{D6AD19D5-F3C2-4097-8204-568D572CE300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthServer.Data", "Data\AuthServer.Data.csproj", "{107237EB-7E3C-4678-9B09-A04B92785630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthServer.Data", "Data\AuthServer.Data.csproj", "{107237EB-7E3C-4678-9B09-A04B92785630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthServer.Service", "Service\AuthServer.Service.csproj", "{8DAF0A8F-5CD4-49C8-8924-37797808CC00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthServer.Service", "Service\AuthServer.Service.csproj", "{8DAF0A8F-5CD4-49C8-8924-37797808CC00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.API", "App.API\App.API.csproj", "{866E9504-CEF2-4841-8289-9E34DC5EC201}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.API", "App.API\App.API.csproj", "{866E9504-CEF2-4841-8289-9E34DC5EC201}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{5B09C78F-C946-4515-8FE9-85FF8F2FC70B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{5B09C78F-C946-4515-8FE9-85FF8F2FC70B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
