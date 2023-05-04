@@ -17,7 +17,7 @@ namespace AuthServer.Service.Services
 
         public async Task<Response<UserDto>> CreateUserAsync(CreateUserDto createUserDto)
         {
-            var user = new IdentityUser{Email = createUserDto.EMail};
+            var user = new IdentityUser{Email = createUserDto.EMail,UserName=createUserDto.EMail};
             var result = await _userManager.CreateAsync(user,createUserDto.Password);
             if (!result.Succeeded)
             {
