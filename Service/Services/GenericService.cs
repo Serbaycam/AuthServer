@@ -5,7 +5,6 @@ using AuthServer.Service.Mapper;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Dtos;
 using System.Linq.Expressions;
-using System.Runtime.Serialization;
 
 namespace AuthServer.Service.Services
 {
@@ -31,16 +30,16 @@ namespace AuthServer.Service.Services
 
         public async Task<Response<IEnumerable<TDto>>> GetAllAsync()
         {
-            var entities = ObjectMapper.Mapper.Map<List<TDto>>( await _repository.GetAllAsync());
+            var entities = ObjectMapper.Mapper.Map<List<TDto>>(await _repository.GetAllAsync());
             return Response<IEnumerable<TDto>>.Success(entities, 200);
         }
 
         public async Task<Response<TDto>> GetByIdAsync(int id)
         {
             var entity = await _repository.GetByIdAsync(id);
-            if(entity== null)
+            if (entity == null)
             {
-                return Response<TDto>.Fail("Id Not Found", 404,true);
+                return Response<TDto>.Fail("Id Not Found", 404, true);
             }
             return Response<TDto>.Success(ObjectMapper.Mapper.Map<TDto>(entity), 200);
         }
@@ -48,16 +47,16 @@ namespace AuthServer.Service.Services
         public async Task<Response<NoDataDto>> Remove(int id)
         {
             var isExist = await _repository.GetByIdAsync(id);
-            if(isExist == null)
+            if (isExist == null)
             {
-                return Response<NoDataDto>.Fail("Id Not Found",404,true);
+                return Response<NoDataDto>.Fail("Id Not Found", 404, true);
             }
             _repository.Remove(isExist);
             await _unitOfWork.CommitAsync();
             return Response<NoDataDto>.Success(204);
         }
 
-        public async Task<Response<NoDataDto>> Update(TDto tdto,int id)
+        public async Task<Response<NoDataDto>> Update(TDto tdto, int id)
         {
             var isExistEntity = await _repository.GetByIdAsync(id);
             if (isExistEntity == null)
@@ -73,7 +72,7 @@ namespace AuthServer.Service.Services
         public async Task<Response<IEnumerable<TDto>>> Where(Expression<Func<TEntity, bool>> predicate)
         {
             var list = _repository.Where(predicate);
-            return Response<IEnumerable<TDto>>.Success(ObjectMapper.Mapper.Map<IEnumerable<TDto>>(await list.ToListAsync()),200);
+            return Response<IEnumerable<TDto>>.Success(ObjectMapper.Mapper.Map<IEnumerable<TDto>>(await list.ToListAsync()), 200);
         }
     }
 }

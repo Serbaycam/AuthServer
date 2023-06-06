@@ -30,7 +30,7 @@ namespace AuthServer.Service.Services
             random.GetBytes(numberBytes);
             return Convert.ToBase64String(numberBytes);
         }
-        private IEnumerable<Claim> GetClaims(IdentityUser user,List<String> audiences)
+        private IEnumerable<Claim> GetClaims(IdentityUser user, List<String> audiences)
         {
             var userList = new List<Claim>
             {
@@ -39,7 +39,7 @@ namespace AuthServer.Service.Services
                 new Claim(JwtRegisteredClaimNames.Email,user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
-            userList.AddRange(audiences.Select(x=>new Claim(JwtRegisteredClaimNames.Aud,x)));
+            userList.AddRange(audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));
             return userList;
         }
         private IEnumerable<Claim> GetClaimsByClient(Client client)

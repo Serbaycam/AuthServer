@@ -2,9 +2,7 @@
 using AuthServer.Core.Models;
 using AuthServer.Core.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace AuthServer.API.Controllers
 {
@@ -13,7 +11,7 @@ namespace AuthServer.API.Controllers
     [ApiController]
     public class ProductController : CustomBaseController
     {
-        private readonly IGenericService<Product,ProductDto> _productService;
+        private readonly IGenericService<Product, ProductDto> _productService;
 
         public ProductController(IGenericService<Product, ProductDto> productService)
         {
@@ -36,7 +34,7 @@ namespace AuthServer.API.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateProduct(ProductDto productDto)
         {
-            return ActionResultInstance(await _productService.Update(productDto,productDto.Id));
+            return ActionResultInstance(await _productService.Update(productDto, productDto.Id));
         }
 
 

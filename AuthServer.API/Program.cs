@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Configurations;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,12 +56,12 @@ builder.Services.AddAuthentication(op =>
     {
         ValidIssuer = tokenOptions.Issuer,
         ValidAudience = tokenOptions.Audience[0],
-        IssuerSigningKey=SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
-        ValidateIssuerSigningKey=true,
-        ValidateAudience=true,
-        ValidateIssuer=true,
-        ValidateLifetime=true,
-        ClockSkew=TimeSpan.Zero
+        IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
+        ValidateIssuerSigningKey = true,
+        ValidateAudience = true,
+        ValidateIssuer = true,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero
     };
 });
 
