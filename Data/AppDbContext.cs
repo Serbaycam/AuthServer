@@ -9,6 +9,7 @@ namespace AuthServer.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
+            this.Database.EnsureCreated();
         }
 
 
