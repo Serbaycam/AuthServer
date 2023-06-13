@@ -7,7 +7,7 @@
         public ErrorDto(string error, bool isShow)
         {
             Errors.Add(error);
-            isShow = true;
+            IsShow = isShow;
 
         }
 

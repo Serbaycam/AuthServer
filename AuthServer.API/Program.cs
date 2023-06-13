@@ -6,6 +6,7 @@ using AuthServer.Data;
 using AuthServer.Data.Repositories;
 using AuthServer.Data.UnitOfWork;
 using AuthServer.Service.Services;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -51,8 +52,11 @@ var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTok
 builder.Services.AddCustomTokenAuth(tokenOptions);
 
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers().AddFluentValidation(op =>
+{
+    op.RegisterValidatorsFromAssemblyContaining<Program>();
+});
+builder.Services.UseCustomValidationResponse();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -64,7 +68,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+else
+{
+    app.UseCustomException();
+}
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
