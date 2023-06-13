@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Configurations;
+using SharedLibrary.Extensions;
 using SharedLibrary.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,29 +44,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(op =>
 
 
 // Add services to the container.
-var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
 builder.Services.Configure<List<Client>>(builder.Configuration.GetSection("Clients"));
 
-builder.Services.AddAuthentication(op =>
-{
-    op.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    op.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, op =>
-{
-    var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
-    op.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-    {
-        ValidIssuer = tokenOptions.Issuer,
-        ValidAudience = tokenOptions.Audience[0],
-        IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOptions.SecurityKey),
-        ValidateIssuerSigningKey = true,
-        ValidateAudience = true,
-        ValidateIssuer = true,
-        ValidateLifetime = true,
-        ClockSkew = TimeSpan.Zero
-    };
-});
-
+builder.Services.Configure<CustomTokenOption>(builder.Configuration.GetSection("TokenOption"));
+var tokenOptions = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOption>();
+builder.Services.AddCustomTokenAuth(tokenOptions);
 
 
 builder.Services.AddControllers();
