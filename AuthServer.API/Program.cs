@@ -7,12 +7,10 @@ using AuthServer.Data.Repositories;
 using AuthServer.Data.UnitOfWork;
 using AuthServer.Service.Services;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SharedLibrary.Configurations;
 using SharedLibrary.Extensions;
-using SharedLibrary.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
