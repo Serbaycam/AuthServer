@@ -32,7 +32,7 @@ namespace AuthServer.Service.Services
             var user = await _userManager.FindByEmailAsync(signInDto.EMail);
             if (user == null) return Response<TokenDto>.Fail("Email or Password is wrong", 400, true);
             if (!await _userManager.CheckPasswordAsync(user, signInDto.Password)) { return Response<TokenDto>.Fail("Email or Password is wrong", 400, true); }
-            var token = _tokenService.CreateToken(user);
+            var token = await _tokenService.CreateTokenAsync(user);
             var userRefreshToken = await _refreshTokenService.Where(x => x.UserId == user.Id).SingleOrDefaultAsync();
             if (userRefreshToken == null)
             {
@@ -72,7 +72,7 @@ namespace AuthServer.Service.Services
             {
                 return Response<TokenDto>.Fail("User Id not found", 404, true);
             }
-            var tokenDto = _tokenService.CreateToken(user);
+            var tokenDto = await _tokenService.CreateTokenAsync(user);
             existRefreshToken.Code = tokenDto.RefreshToken;
             existRefreshToken.Expiration = tokenDto.RefreshTokenExpiration;
             await _unitOfWork.CommitAsync();
